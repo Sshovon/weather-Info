@@ -1,5 +1,5 @@
-const geocode = require('./utils/geocode');
-const forecast = require('./utils/forecast');
+const geocode = require('./src/utils/geocode');
+const forecast = require('./src/utils/forecast');
 const url = 'http://api.weatherstack.com/current?access_key=5457ac2399751a8f03dd63625fe4baa8&query=37.8267,-122.4233';
 
 if (process.argv[2] === undefined)
