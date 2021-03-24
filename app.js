@@ -16,10 +16,7 @@ geocode(process.argv[2], (error,{latitude,longitude,location} = {}) => {
         if (error) {
             return console.log(error);
         }
-        console.log(location);
-        console.log(fdata.time);
-        console.log('current temperature is ',fdata.temperature);
-        console.log(fdata.feelsLike);
+        console.log(fdata);
 
     })
     

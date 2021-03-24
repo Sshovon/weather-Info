@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
-
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
+const { time } = require('console');
 
 const app = express();
 
@@ -19,7 +21,7 @@ hbs.registerPartials(partialsPath);
 
 app.get('', (req,res) => {
     res.render('index', {
-        title: 'weather app',
+        title: 'Weather',
         name: 'shovon'
     })
 })
@@ -40,7 +42,34 @@ app.get('/about', (req,res) => {
 })
 
 app.get('/weather', (req,res) => {
+    if (!req.query.address) {
+        return res.send({
+            errorMessage: 'You must provide an address!'
+        })
+    }
     
+    geocode(req.query.address, (error, {latitude,longitude,location}={}) => {
+        if (error) {
+            return res.send({
+                error
+            })
+        }
+
+        //console.log(latitude, longitude, location);
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return res.send({
+                    error
+                })
+            }
+            res.send({
+                forecast: forecastData,
+                location: location
+            });
+        })
+
+
+    })
 })
 
 
