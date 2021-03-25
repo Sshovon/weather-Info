@@ -1,6 +1,5 @@
 //const { response } = require("express");
 
-console.log('client side js file is loaded');
 
 const getWeatherData = function (address) {
     fetch('http://localhost:3000/weather?address='+encodeURIComponent(address)).
