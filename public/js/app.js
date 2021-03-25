@@ -2,7 +2,7 @@
 
 
 const getWeatherData = function (address) {
-    fetch('http://localhost:3000/weather?address='+encodeURIComponent(address)).
+    fe/weather?address='+encodeURIComponent(address)).
     then(res => {
         return res.json()
     }).
